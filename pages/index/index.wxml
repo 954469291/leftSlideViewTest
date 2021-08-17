@@ -1,0 +1,27 @@
+<!--index.wxml-->
+
+<view class="contentView">
+   <leftSlideGroup id="leftSlideGroup" isLinked="{{true}}">
+      <block wx:for="{{list}}" wx:for-item="item" wx:for-index="i" wx:key="*this">
+         <leftSlideItem id="leftSlideItem" >
+            <view class="leftView" slot="leftView">
+               <view class="goodsName">
+                  旺仔牛奶
+               </view>
+               <view class="barCode">
+                  商品条码：122343434
+               </view>
+               <view class="bottomRow">
+                  <text class="qty">实盘数量：12</text>
+                  <text class="unit">货架号：105</text>
+               </view>
+               <text class="num">{{item}}</text>
+            </view>
+            <view class="rightView" slot="rightView">
+               <view class="deleteView" bindtap="deleteItem" data-index="{{i}}" >删除</view>
+               <view class="updateView">修改</view>
+            </view>
+         </leftSlideItem>
+      </block>
+   </leftSlideGroup>
+</view>

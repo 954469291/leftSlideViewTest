@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "自定义左滑删除组件",
+  "usingComponents": {
+    "leftSlideItem":"../../components/leftSlideItem/leftSlideItem",
+    "leftSlideGroup":"../../components/leftSlideGroup/leftSlideGroup"
+  }
+}

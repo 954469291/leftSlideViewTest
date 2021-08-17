@@ -1,0 +1,11 @@
+<!--leftSlideItem.wxml-->
+
+<view class="leftSlideItem  {{className}}" style=" border-radius: {{borderradius}}; bottom:{{ offsetY ? offsetY : 0}}px; {{offsetY == 0 ? '' : 'transition: bottom ' + animDuration + 'ms'}}" bindtouchmove="touchmove" bindtouchstart="touchstart" bindtouchend="touchend"
+  bindtouchcancel="touchend">
+  <view class="leftView" style="left: {{offsetX}}px;  {{isTouch ? '' : 'transition: left 300ms'}} ">
+    <slot name="leftView"></slot>
+  </view>
+  <view class="rightView" style="left: calc(100% + {{offsetX}}px + 5rpx);{{isTouch ? '' : 'transition: left 300ms' }}">
+    <slot name="rightView"></slot>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+
+.leftSlideItem{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow: hidden;
+}
+
+.leftSlideItem .leftView{
+  width: calc(100% + 5rpx);
+  height: 100%;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+}
+.leftSlideItem .rightView{
+  height: 100%;
+  position: absolute;
+}
+
+.concealView{
+  visibility:hidden;
+}
+
