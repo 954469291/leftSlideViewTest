@@ -36,7 +36,7 @@ Component({
   data: {
     animDuration: 300, //动画时长,单位毫秒
     animInterval: 50, //动画间隔时长，单位毫秒，当removeEffects属性为sequence时有效
-    isAnimation : false //是否正在执行删除动画
+    isAnimation: false //是否正在执行删除动画
   },
 
   /**
@@ -52,10 +52,20 @@ Component({
      */
     deleteChild(indexItem, callBack) {
       var that = this
+      var regu = /^\d+$/; //非负整数正则
+      //传入的下标必须为非负正实数
+      if (!regu.test(indexItem)) {
+        wx.showModal({
+          title: '提示',
+          content : `deleteChild()参数类型错误，indexItem参数应当为非负整数！`
+        })
+        return
+      }
+
       var nodes = this.getRelationNodes('../leftSlideItem/leftSlideItem') //获取所有已关联的子节点，且是有序的
       var deleteNode = nodes[indexItem] //当前需要操作的节点
-      
-      var windowHeight = this.data.systemInfo.windowHeight//可使用窗口高度，单位px
+
+      var windowHeight = this.data.systemInfo.windowHeight //可使用窗口高度，单位px
 
       //计算被删除节点后面的的节点需要向上的偏移量，offsetY = 当前节点的高+当前节点距离下一个节点的距离
       var offsetY = deleteNode.data.height +
@@ -65,7 +75,7 @@ Component({
       var animDuration = that.data.animDuration //动画时长,单位毫秒
 
       this.setData({
-        isAnimation:true //正在执行动画
+        isAnimation: true //正在执行动画
       })
 
       //遍历操作需要响应的组件
@@ -82,10 +92,10 @@ Component({
           var removeEffects = that.data.removeEffects //子组件移除特效,sequence(依次触发)\together(同时触发)
 
           //预先如果移动后还在屏幕外，则后面的条目都不用执行动画了。
-          if(item.data.top - offsetY > windowHeight){
+          if (item.data.top - offsetY > windowHeight) {
             setTimeout(function () {
               that.setData({
-                isAnimation:false //动画执行完毕
+                isAnimation: false //动画执行完毕
               })
               callBack() //动画结束回调
             }, animDuration + delay) ////子组件css移动的动画设置的300ms，这里保持一致
@@ -108,7 +118,7 @@ Component({
         if (index == nodes.length - 1 && callBack) {
           setTimeout(function () {
             that.setData({
-              isAnimation:false //动画执行完毕
+              isAnimation: false //动画执行完毕
             })
             callBack() //动画结束回调
           }, animDuration + delay) ////子组件css移动的动画设置的300ms，这里保持一致
